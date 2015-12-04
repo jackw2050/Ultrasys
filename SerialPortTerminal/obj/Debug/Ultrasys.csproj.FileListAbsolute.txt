@@ -1,0 +1,47 @@
+C:\Users\User\Desktop\SerialPortTerminal\bin\Debug\SerialPort Terminal.exe.config
+C:\Users\User\Desktop\SerialPortTerminal\bin\Debug\SerialPort Terminal.exe.manifest
+C:\Users\User\Desktop\SerialPortTerminal\bin\Debug\SerialPort Terminal.application
+C:\Users\User\Desktop\SerialPortTerminal\bin\Debug\SerialPort Terminal.exe
+C:\Users\User\Desktop\SerialPortTerminal\bin\Debug\SerialPort Terminal.pdb
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.frmAbout.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.CrossCouplingDataForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.CrossCouplingChartForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.EngineerConfigurationForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.FileConfigurationForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.GravityChartForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.GravityDataForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.SerialForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.SetDateTimeForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.SpringTensionForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.SwitchesForm.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.frmTerminal.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPortTerminal.Properties.Resources.resources
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\Ultrasys.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPort Terminal.exe.manifest
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPort Terminal.application
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPort Terminal.exe
+C:\Users\User\Desktop\SerialPortTerminal\obj\Debug\SerialPort Terminal.pdb
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\bin\Debug\SerialPort Terminal.exe.config
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPort Terminal.exe
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPort Terminal.pdb
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.frmAbout.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.CrossCouplingDataForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.CrossCouplingChartForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.EngineerConfigurationForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.FileConfigurationForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.GravityChartForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.GravityDataForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.SerialForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.SetDateTimeForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.SpringTensionForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.SwitchesForm.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.frmTerminal.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPortTerminal.Properties.Resources.resources
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\Ultrasys.csproj.GenerateResource.Cache
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\bin\Debug\SerialPort Terminal.exe.manifest
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\bin\Debug\SerialPort Terminal.application
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\bin\Debug\SerialPort Terminal.exe
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\bin\Debug\SerialPort Terminal.pdb
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPort Terminal.exe.manifest
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\SerialPort Terminal.application
+C:\Users\User\Documents\GitHub\Ultrasys\SerialPortTerminal\obj\Debug\Ultrasys.csprojResolveAssemblyReference.cache

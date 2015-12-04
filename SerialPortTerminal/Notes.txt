@@ -1,0 +1,12 @@
+﻿Created by Jack Walker
+
+Current issues
+
+Form control from other threads
+Passing parameters between forms and threads
+
+
+
+1. No Change
+
+
