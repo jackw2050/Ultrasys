@@ -5,21 +5,29 @@
  */
 
 #region Namespace Inclusions
-
-using SerialPortTerminal.Properties;
+using FileHelpers;
+using UltraSys.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Data;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.ComponentModel;
+using System.Windows.Forms.DataVisualization.Charting;
+
+
+
+
+
 
 #endregion Namespace Inclusions
 
-namespace SerialPortTerminal
+namespace UltraSys
 {
     #region Public Enumerations
 
@@ -29,10 +37,10 @@ namespace SerialPortTerminal
 
     #endregion Public Enumerations
 
-    public partial class frmTerminal : Form
+    public partial class UltraSysMainForm : Form
     {
         public CalculateMarineData mdt = new CalculateMarineData();
-
+        
         private delegate void SetTextCallback(string text, DateTime time, double Yval);
 
         #region Local Variables
@@ -47,7 +55,7 @@ namespace SerialPortTerminal
         private bool KeyHandled = false;
 
         private Settings settings = Settings.Default;
-
+        public static Boolean engineerMode = false;
         // from ultrasys program  used in K-check  Not sure I need them
         private double[] SUM = { 0, 0 };
 
@@ -57,8 +65,7 @@ namespace SerialPortTerminal
 
         private double[,] STORE =  {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-        };
+            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 
         private char[] STAT; // size of 10 in ultrasys
         private int ITAG = 0;
@@ -389,87 +396,10 @@ namespace SerialPortTerminal
             }
 
         }
-        private struct DataOutputBuffer  //Data4
-        {
-            public float analogGravity;
-            public float digitalGravity;
-            public float zeroVolts;
-            public float springTension;
-            public float crossCoupling;
-            public float avgB;
-            public float vCrossCoupling;
-            public float al;
-            public float ax;
-            public float ve;
-            public float ax2Cmx;
-            public float xaCrossCoupling2;
-            public float laCrossCoupling;
-            public float xComp;
-            public float lComp;
-            public float xacc1;
-            public float aux1;
-            public float aux2;
-            public float aux3;
-            public float aux4;
-            public float CrossCoupling;
-            public float tc;
-            public float avgB2;
 
-            public const string analogGravityFiltering = "2 min";
-            public const string digitalGravityFiltering = "5 min";
-            public const string zeroVoltsFiltering = "3 x20";
-            public const string springTensionFiltering = "3 x20";
-            public const string crossCouplingFiltering = "3 x20";
-            public const string avgBFiltering = "3 x20";
-            public const string vCrossCouplingFiltering = "3 x20";
-            public const string alFiltering = "3 x20";
-            public const string axFiltering = "3 x20";
-            public const string veFiltering = "3 x20";
-            public const string ax2CmxFiltering = "3 x20";
-            public const string xaCrossCoupling2Filtering = "3 x20";
-            public const string laCrossCouplingFiltering = "3 x20";
-            public const string xCompFiltering = "3 x20";
-            public const string lCompFiltering = "3 x20";
-            public const string xacc1Filtering = "3 x20";
-            public const string aux1Filtering = "3 x20";
-            public const string aux2Filtering = "3 x20";
-            public const string aux3Filtering = "3 x20";
-            public const string aux4Filtering = "3 x20";
-            public const string CrossCouplingFiltering = "2 min";
-            public const string tcFiltering = "2 min";
-            public const string avgB2Filtering = "2 min";
-        }
-        private struct analogFilterCrossCouplingPhase
-        {
-            public float ax;
-            public float al;
-            public float vCrossCoupling;
-            public float xComp;
-            public float lComp;
-            public float xComp16;
-            public float lComp16;
-        }
 
-        private struct meterMode
-        {
-             public int     MAXSTEP;
-             public double   STSCALE;
-             public double   FMPM;
-        }
-        private struct CrossCouplingFactor
-        {
-            public float vCrossCoupling;
-            public float al;
-            public float ax;
-            public float ve;
-            public float ax2;
-            public float xaCrossCoupling2;
-            public float laCrossCoupling;
-            public float xComp;
-            public float lComp;
-            public float xComp16;
-            public float lComp16;
-        }
+
+      
 
         //----------------------------------------------------------------------------------------------------------------
 
@@ -482,7 +412,7 @@ namespace SerialPortTerminal
 
         #region Constructor
 
-        public frmTerminal()
+        public UltraSysMainForm()
         {
             //      chart1.Series.Add("Series1");
 
@@ -687,7 +617,9 @@ namespace SerialPortTerminal
                 cmbParity.Text = settings.Parity.ToString();
                 cmbBaudRate.Text = settings.BaudRate.ToString();
             */
-            CurrentDataMode = settings.DataMode;
+            //CurrentDataMode = settings.DataMode;
+            // CurrentDataMode = DataMode.Text; 
+            CurrentDataMode = DataMode.Hex; 
             ///////////////////////////////////////////////////////
             RefreshComPortList();
 
@@ -754,6 +686,8 @@ namespace SerialPortTerminal
         /// <param name="msg"> The string containing the message to be shown. </param>
         private void Log(LogMsgType msgtype, string msg)
         {
+            if(engineerMode)
+            { 
             rtfTerminal.Invoke(new EventHandler(delegate
             {
                 rtfTerminal.SelectedText = string.Empty;
@@ -762,6 +696,7 @@ namespace SerialPortTerminal
                 rtfTerminal.AppendText(msg);
                 rtfTerminal.ScrollToCaret();
             }));
+                }
         }
 
         /// <summary> Convert a string of hex digits (ex: E4 CA B2) to a byte array. </summary>
@@ -795,13 +730,13 @@ namespace SerialPortTerminal
         {
             get
             {
-                if (rbHex.Checked) return DataMode.Hex;
-                else return DataMode.Text;
+               // if (rbHex.Checked) return DataMode.Hex;
+                 return DataMode.Hex;
             }
             set
             {
-                if (value == DataMode.Text) rbText.Checked = true;
-                else rbHex.Checked = true;
+               // if (value == DataMode.Text) rbText.Checked = true;
+              //  else rbHex.Checked = true;
             }
         }
 
@@ -823,22 +758,8 @@ namespace SerialPortTerminal
         private void frmTerminal_FormClosing(object sender, FormClosingEventArgs e)
         {
             // The form is closing, save the user's preferences
-            //    SaveSettings();
+                //SaveSettings();
         }
-
-        private void rbText_CheckedChanged(object sender, EventArgs e)
-        { if (rbText.Checked) CurrentDataMode = DataMode.Text; }
-
-        private void rbHex_CheckedChanged(object sender, EventArgs e)
-        { if (rbHex.Checked) CurrentDataMode = DataMode.Hex; }
-
-        /*
-                private void cmbBaudRate_Validating(object sender, CancelEventArgs e)
-                { int x; e.Cancel = !int.TryParse(cmbBaudRate.Text, out x); }
-
-                private void cmbDataBits_Validating(object sender, CancelEventArgs e)
-                { int x; e.Cancel = !int.TryParse(cmbDataBits.Text, out x); }
-        */
 
         private void btnOpenPort_Click(object sender, EventArgs e)
         {
@@ -850,10 +771,10 @@ namespace SerialPortTerminal
             else
             {
                 // Set the port's settings
-                comport.BaudRate = 9600;  //   int.Parse(cmbBaudRate.Text);
-                comport.DataBits = 8;  //int.Parse(cmbDataBits.Text);
-                comport.StopBits = (StopBits)Enum.Parse(typeof(StopBits), "One"); ; // (StopBits)Enum.Parse(typeof(StopBits), cmbStopBits.Text);
-                comport.Parity = (Parity)Enum.Parse(typeof(Parity), "None"); ;  // (Parity)Enum.Parse(typeof(Parity), cmbParity.Text);
+                comport.BaudRate = 9600;                                            // int.Parse(cmbBaudRate.Text);
+                comport.DataBits = 8;                                               // int.Parse(cmbDataBits.Text);
+                comport.StopBits = (StopBits)Enum.Parse(typeof(StopBits), "One");   // (StopBits)Enum.Parse(typeof(StopBits), cmbStopBits.Text);
+                comport.Parity = (Parity)Enum.Parse(typeof(Parity), "None"); ;      // (Parity)Enum.Parse(typeof(Parity), cmbParity.Text);
                 comport.PortName = cmbPortName.Text;
 
                 try
@@ -884,6 +805,13 @@ namespace SerialPortTerminal
             }
         }
 
+
+
+
+
+        /// <summary>
+        /// SEND DATA COMMAND
+        /// </summary>
         private void btnSend_Click(object sender, EventArgs e)
         { SendData(); }
 
@@ -905,18 +833,17 @@ namespace SerialPortTerminal
             }
             else
             {
-                // Obtain the number of bytes waiting in the port's buffer
-                int bytes = comport.BytesToRead;
 
-                // Create a byte array buffer to hold the incoming data
-                byte[] buffer = new byte[bytes];
+                int bytes = comport.BytesToRead;            // Obtain the number of bytes waiting in the port's buffer
+
+                byte[] buffer = new byte[bytes];            // Create a byte array buffer to hold the incoming data
                 //        byte[] buffer = new byte[];
 
-                // Read the data from the port and store it in our buffer
-                comport.Read(buffer, 0, bytes);
 
-                // Show the user the incoming data in hex format
-                Log(LogMsgType.Incoming, ByteArrayToHexString(buffer));
+                comport.Read(buffer, 0, bytes);             // Read the data from the port and store it in our buffer
+
+
+                Log(LogMsgType.Incoming, ByteArrayToHexString(buffer)); // Show the user the incoming data in hex format
 
                 InputData1Second InputInputBuffer = new InputData1Second();
                 mdt.GetMeterData(buffer);// send buffer for parsing
@@ -942,28 +869,7 @@ namespace SerialPortTerminal
 
         private void SetupGravityChart()
         {
-            //        .chart1.Series.Clear();
-            //     chart1.Series.Add("Series1");
-
-            //          chart1.Series["Series1"].XValueType = ChartValueType.DateTime;
-            //         chart1.Series["Series1"].XAxisType = DateTime;
-            //     chart1.Series["Series1"].Points.AddXY(DateTime.Now, 12.00m);
-            //     chart1.Series["Series1"].Points.AddXY(DateTime.Now.AddDays(1), 13m);
-            //     chart1.Series["Series1"].Points.AddXY(DateTime.Now.AddDays(2), 8m);
-            //            chart1.Series["Series1"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            //            chart1.Series["Series1"].BorderWidth = 3;
-            //chart1.ChartAreas["ChartArea1"].AxisX.Interval = 1;
-            //chart1.ChartAreas["ChartArea1"].AxisX.LabelStyle.Format = "dd. 00:00:00";
-
-            //            chart1.Series.Add("Series2");
-            //            chart1.Series["Series2"].XValueType = ChartValueType.DateTime;
-            //            chart1.Series["Series2"].Points.AddXY(DateTime.Now, 5.00m);
-            //            chart1.Series["Series2"].Points.AddXY(DateTime.Now.AddDays(1), 7m);
-            //            chart1.Series["Series2"].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            //            chart1.Series["Series2"].BorderWidth = 3;
-            //            chart1.ChartAreas["0"].AxisX.Interval = 1;
-
-            //   Chart1.ChartAreas["area"].AxisX.LabelStyle.Format = "yyyy-MM-dd HH:mm";
+         
         }
 
         private void ThreadProcSafe()
@@ -989,7 +895,8 @@ namespace SerialPortTerminal
             {
                 // Check if this method is running on a different thread
                 // than the thread that created the control.
-                if (myGravityDataForm.GravityRichTextBox1.InvokeRequired)
+                if (myGravityDataForm.gravityDataGridView.InvokeRequired)
+
                 {
                     // It's on a different thread, so use Invoke.
                     SetTextCallback d = new SetTextCallback(SetText);
@@ -999,7 +906,7 @@ namespace SerialPortTerminal
                 else
                 {
                     // It's on the same thread, no need for Invoke
-                    myGravityDataForm.GravityRichTextBox1.Text = text + " (No Invoke)";
+                    myGravityDataForm.gravityDataGridView.Text = text + " (No Invoke)";
                 }
             }
 
@@ -1013,8 +920,8 @@ namespace SerialPortTerminal
             GravityDataForm GravityForm = new GravityDataForm();
             GravityChartForm myGravityChart = new GravityChartForm();
 
-            GravityForm.GravityRichTextBox1.AppendText(text + "\n");   //  Convert.ToString(mdt.myDT) + "\t\t" + Convert.ToString(mdt.ST) + "\t\t" + Convert.ToString(mdt.Beam) + "\n"; ;
-            myGravityChart.Gravitychart1.Series["Series1"].Points.AddXY(time, Yval);
+         //   GravityForm.gravityDataGridView.AppendText(text + "\n");   //  Convert.ToString(mdt.myDT) + "\t\t" + Convert.ToString(mdt.ST) + "\t\t" + Convert.ToString(mdt.Beam) + "\n"; ;
+            myGravityChart.GravityChart.Series["Series1"].Points.AddXY(time, Yval);
         }
 
         private void txtSendData_KeyDown(object sender, KeyEventArgs e)
@@ -1070,26 +977,21 @@ namespace SerialPortTerminal
 
         private string RefreshComPortList(IEnumerable<string> PreviousPortNames, string CurrentSelection, bool PortOpen)
         {
-            // Create a new return report to populate
-            string selected = null;
 
-            // Retrieve the list of ports currently mounted by the operating system (sorted by name)
-            string[] ports = SerialPort.GetPortNames();
+            string selected = null;// Create a new return report to populate
+            string[] ports = SerialPort.GetPortNames();// Retrieve the list of ports currently mounted by the operating system (sorted by name)
+            bool updated = PreviousPortNames.Except(ports).Count() > 0 || ports.Except(PreviousPortNames).Count() > 0;// First determain if there was a change (any additions or removals)
 
-            // First determain if there was a change (any additions or removals)
-            bool updated = PreviousPortNames.Except(ports).Count() > 0 || ports.Except(PreviousPortNames).Count() > 0;
 
-            // If there was a change, then select an appropriate default port
-            if (updated)
+            if (updated)    // If there was a change, then select an appropriate default port
             {
-                // Use the correctly ordered set of port names
-                ports = OrderedPortNames();
+
+                ports = OrderedPortNames(); // Use the correctly ordered set of port names
 
                 // Find newest port if one or more were added
                 string newest = SerialPort.GetPortNames().Except(PreviousPortNames).OrderBy(a => a).LastOrDefault();
 
-                // If the port was already open... (see logic notes and reasoning in Notes.txt)
-                if (PortOpen)
+                if (PortOpen)// If the port was already open... (see logic notes and reasoning in Notes.txt)
                 {
                     if (ports.Contains(CurrentSelection)) selected = CurrentSelection;
                     else if (!String.IsNullOrEmpty(newest)) selected = newest;
@@ -1103,91 +1005,12 @@ namespace SerialPortTerminal
                 }
             }
 
-            // If there was a change to the port list, return the recommended default selection
-            return selected;
+            return selected;// If there was a change to the port list, return the recommended default selection
         }
 
-        private void GravityChartCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.GravityChartCheckBox.Checked == true)
-            {
-                if (myGravityChartForm != null)
-                {
-                    myGravityChartForm.Show();
-                }
-            }
-            else
-            {
-                myGravityChartForm.Hide();
-            }
-        }
+       
 
-        private void GravityDataViewCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.GravityDataViewCheckBox.Checked == true)
-            {
-                if (myGravityDataForm != null)
-                {
-                    myGravityDataForm.Show();
-                }
-            }
-            else
-            {
-                if (myGravityDataForm != null)
-                {
-                    myGravityDataForm.Hide();
-                }
-            }
-        }
-
-        private void CrossCouplingCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.CrossCouplingCheckBox.Checked == true)
-            {
-                if (myCrossCouplingChartFrom != null)
-                {
-                    myCrossCouplingChartFrom.Show();
-                }
-            }
-            else
-            {
-                if (myCrossCouplingChartFrom != null)
-                {
-                    myCrossCouplingChartFrom.Hide();
-                }
-            }
-        }
-
-        private void CrossCouplingDataViewCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.CrossCouplingDataViewCheckBox.Checked == true)
-            {
-                if (myCrossCouplingDataForm != null)
-                {
-                    myCrossCouplingDataForm.Show();
-                }
-            }
-            else
-            {
-                if (myCrossCouplingDataForm != null)
-                {
-                    myCrossCouplingDataForm.Close();
-                }
-            } if (this.CrossCouplingDataViewCheckBox.Checked == true)
-            {
-                if (myCrossCouplingDataForm != null)
-                {
-                    myCrossCouplingDataForm.Show();
-                }
-            }
-            else
-            {
-                if (myCrossCouplingDataForm != null)
-                {
-                    myCrossCouplingDataForm.Hide();
-                }
-            }
-        }
+     
 
         private void engineerToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1208,71 +1031,6 @@ namespace SerialPortTerminal
             mySerialForm.Show();
         }
 
-        private void AuxDisplayCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (AuxDisplayCheckBox.Checked == true)
-            {
-                aux1Label.Visible = true;
-                aux2Label.Visible = true;
-                aux3Label.Visible = true;
-                aux4Label.Visible = true;
-                aux1TextBox.Visible = true;
-                aux2TextBox.Visible = true;
-                aux3TextBox.Visible = true;
-                aux4TextBox.Visible = true;
-                analogLabel.Visible = true;
-                digitalLabel.Visible = true;
-                digitalTextBox.Visible = true;
-            }
-            else
-            {
-                aux1Label.Visible = false;
-                aux2Label.Visible = false;
-                aux3Label.Visible = false;
-                aux4Label.Visible = false;
-                aux1TextBox.Visible = false;
-                aux2TextBox.Visible = false;
-                aux3TextBox.Visible = false;
-                aux4TextBox.Visible = false;
-                analogLabel.Visible = false;
-                digitalLabel.Visible = false;
-                digitalTextBox.Visible = false;
-            }
-        }
-
-        private void systemVoltageDisplayCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (systemVoltageDisplayCheckBox.Checked == true)
-            {
-                plus15vLabel.Visible = true;
-                plus15vTextBox.Visible = true;
-                plus24vLabel.Visible = true;
-                plus24vTextBox.Visible = true;
-                plus28vTextBox.Visible = true;
-                plus28vLabel.Visible = true;
-                minus15vLabel.Visible = true;
-                minus15vTextBox.Visible = true;
-                minus28vLabel.Visible = true;
-                minus28vTextBox.Visible = true;
-                plus5vLabel.Visible = true;
-                plus5vTextBox.Visible = true;
-            }
-            else
-            {
-                plus15vLabel.Visible = false;
-                plus15vTextBox.Visible = false;
-                plus24vLabel.Visible = false;
-                plus24vTextBox.Visible = false;
-                plus28vTextBox.Visible = false;
-                plus28vLabel.Visible = false;
-                minus15vLabel.Visible = false;
-                minus15vTextBox.Visible = false;
-                minus28vLabel.Visible = false;
-                minus28vTextBox.Visible = false;
-                plus5vLabel.Visible = false;
-                plus5vTextBox.Visible = false;
-            }
-        }
 
         private void setDateTimeToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1300,6 +1058,14 @@ namespace SerialPortTerminal
 
         private void frmTerminal_Load(object sender, EventArgs e)
         {
+            if (engineerMode)
+            {
+                rtfTerminal.Visible = true;
+            }
+            else
+            {
+                rtfTerminal.Visible = false;
+            }
         }
 
       //  private int iPort(int x)
@@ -1469,6 +1235,72 @@ namespace SerialPortTerminal
         {
 
         }
+
+        private void gravityChartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (myGravityChartForm != null)
+            {
+                myGravityChartForm.Show();
+            }
+            else
+            {
+                myGravityChartForm.Hide();
+            }
+       
+        }
+
+        private void gravityDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (myGravityDataForm != null)
+            {
+                myGravityDataForm.Show();
+            }
+            else
+            {
+                myGravityDataForm.Hide();
+            }
+        }
+
+        private void crossCouplingChartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (myCrossCouplingChartFrom != null)
+            {
+                myCrossCouplingChartFrom.Show();
+            }
+            else
+            {
+                myCrossCouplingChartFrom.Hide();
+            }
+        }
+
+        private void crossCouplingDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (myCrossCouplingDataForm != null)
+            {
+                myCrossCouplingDataForm.Show();
+            }
+            else
+            {
+                myCrossCouplingDataForm.Hide();
+            }
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            if (System.Windows.Forms.Application.MessageLoop)
+            {
+                // WinForms app
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                // Console app
+                System.Environment.Exit(1);
+            }
+        }
+
+
+
 
  /*      public void NewMeterData(byte[] meterBytes)
         {

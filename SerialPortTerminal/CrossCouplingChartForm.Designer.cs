@@ -1,4 +1,4 @@
-﻿namespace SerialPortTerminal
+﻿namespace UltraSys
 {
     partial class CrossCouplingChartForm
     {
@@ -60,6 +60,7 @@
             this.Controls.Add(this.chart1);
             this.Name = "CrossCouplingChartForm";
             this.Text = "Cross Coupling Graph";
+            this.Load += new System.EventHandler(this.CrossCouplingChartForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 
-namespace SerialPortTerminal
+namespace UltraSys
 {
     /*Data Structures
 
@@ -49,7 +49,7 @@ namespace SerialPortTerminal
         public byte[] PubmeterBytes;
 
         // public DateTime
-        public float ST;
+       public float ST;
 
         public float Beam;
         public float VCC;
@@ -80,6 +80,7 @@ namespace SerialPortTerminal
         public int Hour, Min, Sec;
         public bool validData = false;
         public byte sum = 0;
+ 
 
         //////////////////////////////////////////////////////////////////////////////////////
         //                  variables from old program
@@ -129,6 +130,7 @@ namespace SerialPortTerminal
         private double[] data1 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private double[] data2 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private double[] data3 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+        private double[] data4 = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         public double[,] DATA =
         {
@@ -141,6 +143,7 @@ namespace SerialPortTerminal
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
         };
+
 
         private double[] AFILT = { 0.0, 0.2, 0.2, 0.2, 0.2, 1.0, 1.0, 1.0, 1.0 };// added 0.0 for AFILT[0] when done start from 0 not 1
         private double[] CCFACT = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -499,16 +502,7 @@ namespace SerialPortTerminal
         }
 
 
-// ******************************************************************************************************************************
 
-
-
-
-
-        //************** UPLOOK *****************************************
-        // CONVERTS GRAVITY VALUES ACCORDING TO THE CALIBRATION TABLE
-        // FOR METERS WITH A CONSTANT CALIBRATION FACTOR, A DUMMY
-        // CALIBRATION TABLE MUST BE CREATED USING MKTABLE.
         private double GravCalAdjust(double gVal)
         {
             double uplook = 0;
@@ -519,65 +513,13 @@ namespace SerialPortTerminal
             return (uplook);
         }
 
-        //   REAL FUNCTION UPLOOK (gVal)
-        //    INCLUDE 'PROLOGUE.INC'
-        //    ind = INT(gVal/100.)
-        //    IF (ind > 120) ind = 120
-        //    UPLOOK = TABLE(1,ind) + (gVal-REAL(ind*100))*TABLE(2,ind)
-        //   RETURN
 
-        //******************************************************************************************
-        //                                  DO ONE SECOND STUFF
-        //                          COMPUTE AND STORE CROSS-COUPLING
-        //******************************************************************************************
 
-        //  ****************** filter320 *******************************
-        //  3 * 20 sec RC filter from 1 sec samples
-
-        private void  filter320(double VIN, double F1, double F2, double F3)
-          {
-
-              F1 = F1 + (VIN - F1) * .05;//  (.05 = 1/20)
-              F2 = F2 + (F1 - F2)  * .05;//  (.05 = 1/20)
-              F3 = F3 + (F2 - F3)  * .05;//  (.05 = 1/20)
-           // return VIN F1  F2 F3;
-          }
-
-        private void oneSecStuff()// change to array    double[] data1, double[] data2, double[] data3, double ccFact
-        {
-            DATA[1, 4] = 0.0;       //crossCoupling
-            //sprintTension200Sum = 0;
-            for (int i = 6; i < 12; i++)
-            {
-                DATA[1, 4] = DATA[1, 4] + DATA[1, i] * CCFACT[i];
-                // InputData1Second.avgB = InputData1Second.avgB + CrossCouplingFactor.[i](6-11)
-                for (int ii = 3; ii < 18; ii++)
-                {
-                    filter320(DATA[1, ii], DATA[2, ii], DATA[3, ii], DATA[4, ii]);
-                    //file320(data1[i], data2[i], data3[i], data4[i]);
-
-                    //filter320(InputData1Second.avgB, IntermediateFilterStage2.avgB , IntermediateFilterStage3.avgB, dataOutputBuffer.avgB
-                    // .......
-                    //filter320(InputData1Second.aux3, IntermediateFilterStage2.aux3 , IntermediateFilterStage3.aux3, dataOutputBuffer.aux3
-                }
-                if (MODESW == 1)          // HI RES I/O
-                {
-                    if (IDSKSW > 0 || JDSKSW > 0) IDSKFLG = 2;// need to check AND/ OR function here
-                    if (ICOMSW == -1) ICOMFLG = 2;
-                }
-            }
         }
 
-        //            if (IAND(ISTAT,#E0) == 0)
-        //            { JERR = 0}; //LEAR ERROR COUNT IF OK;
-        //                }
 
-        // CrossCoupl = CrossCoupl +  (6,12) * CCFACT// where does this go??????
-
-        // -----------------------------------------------------------------------------------------------
-        //                                  compute gravity in mGAL
-        //-----------------------------------------------------------------------------------------------
-        private void computGravity()
+    /*
+    private void computGravity()
         {
             double beam = 0;
             double delB = 0;
@@ -599,63 +541,11 @@ namespace SerialPortTerminal
             //DATA[4, 2] = DFILT(RAWG);
             //            digitalGravity = dift[rawg];
             //             GRAV = UPLOOK(DATA[4,2] + 0.05;
-            DATA[1, 23] = tc;
+            data1[23] = tc;
             // data[1,x] only goes to 21
         }
+    */
 
-        // ****************** DFILT *******************************
-        // -----------------------------------------------------------------------------------------------
-        //              PERFORMS 60 POINT DIGITAL FILTER ON GRAVITY
-        // -----------------------------------------------------------------------------------------------
-
-        private double dFilt(double g)
-        {
-            //        IMPLICIT INTEGER*2 (I-N)  // 2 byte int
-            double[] fw = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            double[] gt = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            int nPoint = 0;
-            int k = 0;
-
-            //        DATA GT,NPOINT/60*0.,0/
-            // FILTER WEIGHTS
-
-            double[,] fData = new double[10, 6] {
-            { -.00034,-.00038,-.00041,-.00044,-.00046,-.00046},
-            { -.00044,-.00039,-.00030,-.00015,.00007,.00037},
-            {  .00079,.00133,.00202,.00289,.00396,.00526},
-            {  .00679,.00859,.01066,.01299,.01558,.01841},
-            {  .02143,.02460,.02785,.03110,.03426,.03723},
-            {  .03992,.04223,.04408,.04539,.04613,.04626},
-            {  .04579,.04474,.04315,.04109,.03864,.03589},
-            {  .03292,.02984,.02671,.02362,.02063,.01780},
-            {  .01516,.01274,.01056,.00863,.00694,.00548},
-            {  .00424,.00321,.00235,.00166,.00111,.00068}};
-
-            //            SAVE
-            nPoint = nPoint + 1;
-            if (nPoint > 60) nPoint = 1;
-            gt[nPoint] = g;
-            k = nPoint;
-            //        DFILT = 0.0;
-            //       DO 100 I=1,
-            for (int i = 0; i < 160; i++)
-            {
-                k = k + 1;
-                if (k > 60) k = 1;
-
-                //   DFILT = DFILT + FW[I]*(GT[K]-GT[1]);// 100
-            }
-
-            //        DFILT = DFILT + GT[1];
-            //           dFilt = dFilt + gt[1];
-            return k;
-        }
-
-        //-----------------------------------------------------------------------------------------------
-        //  COMPUTE AND STORE CROSS COUPLING
-        //-----------------------------------------------------------------------------------------------
-        //DATA[1,3] = 0
-        //
 
 
         
@@ -666,5 +556,5 @@ namespace SerialPortTerminal
 
 
 
-    }
+    
 }

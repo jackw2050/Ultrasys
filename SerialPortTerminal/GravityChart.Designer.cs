@@ -1,4 +1,4 @@
-﻿namespace SerialPortTerminal
+﻿namespace UltraSys
 {
     partial class GravityChartForm
     {
@@ -33,26 +33,27 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            this.Gravitychart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            ((System.ComponentModel.ISupportInitialize)(this.Gravitychart1)).BeginInit();
+            this.GravityChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chartCloseButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.GravityChart)).BeginInit();
             this.SuspendLayout();
             // 
-            // Gravitychart1
+            // GravityChart
             // 
-            this.Gravitychart1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.GravityChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Gravitychart1.BackColor = System.Drawing.Color.SlateGray;
-            this.Gravitychart1.BackImageTransparentColor = System.Drawing.Color.Black;
-            this.Gravitychart1.BackSecondaryColor = System.Drawing.Color.Black;
-            this.Gravitychart1.BorderSkin.PageColor = System.Drawing.Color.Black;
+            this.GravityChart.BackColor = System.Drawing.Color.SlateGray;
+            this.GravityChart.BackImageTransparentColor = System.Drawing.Color.Black;
+            this.GravityChart.BackSecondaryColor = System.Drawing.Color.Black;
+            this.GravityChart.BorderSkin.PageColor = System.Drawing.Color.Black;
             chartArea1.BackColor = System.Drawing.Color.Black;
             chartArea1.Name = "ChartArea1";
-            this.Gravitychart1.ChartAreas.Add(chartArea1);
+            this.GravityChart.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
-            this.Gravitychart1.Legends.Add(legend1);
-            this.Gravitychart1.Location = new System.Drawing.Point(1, 12);
-            this.Gravitychart1.Name = "Gravitychart1";
+            this.GravityChart.Legends.Add(legend1);
+            this.GravityChart.Location = new System.Drawing.Point(1, 12);
+            this.GravityChart.Name = "GravityChart";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
             series1.Legend = "Legend1";
@@ -64,32 +65,47 @@
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
             series3.Name = "Series3";
-            this.Gravitychart1.Series.Add(series1);
-            this.Gravitychart1.Series.Add(series2);
-            this.Gravitychart1.Series.Add(series3);
-            this.Gravitychart1.Size = new System.Drawing.Size(677, 203);
-            this.Gravitychart1.TabIndex = 17;
-            this.Gravitychart1.Text = "chart1";
-            this.Gravitychart1.Click += new System.EventHandler(this.Gravitychart1_Click);
+            this.GravityChart.Series.Add(series1);
+            this.GravityChart.Series.Add(series2);
+            this.GravityChart.Series.Add(series3);
+            this.GravityChart.Size = new System.Drawing.Size(937, 305);
+            this.GravityChart.TabIndex = 17;
+            this.GravityChart.Text = "Gravity";
+            this.GravityChart.Click += new System.EventHandler(this.GravityChart_Click);
+            // 
+            // chartCloseButton
+            // 
+            this.chartCloseButton.Location = new System.Drawing.Point(821, 251);
+            this.chartCloseButton.Name = "chartCloseButton";
+            this.chartCloseButton.Size = new System.Drawing.Size(75, 23);
+            this.chartCloseButton.TabIndex = 18;
+            this.chartCloseButton.Text = "Close Chart";
+            this.chartCloseButton.UseVisualStyleBackColor = true;
+            this.chartCloseButton.Click += new System.EventHandler(this.chartCloseButton_Click);
             // 
             // GravityChartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(690, 227);
-            this.Controls.Add(this.Gravitychart1);
+            this.ClientSize = new System.Drawing.Size(950, 329);
+            this.ControlBox = false;
+            this.Controls.Add(this.chartCloseButton);
+            this.Controls.Add(this.GravityChart);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "GravityChartForm";
             this.Text = "GravityChart";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.GravityChartForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Gravitychart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GravityChart)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        public System.Windows.Forms.DataVisualization.Charting.Chart Gravitychart1;
+        public System.Windows.Forms.DataVisualization.Charting.Chart GravityChart;
+        private System.Windows.Forms.Button chartCloseButton;
 
     }
 }

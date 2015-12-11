@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 
-namespace SerialPortTerminal
+namespace UltraSys
 {
 
 
@@ -40,10 +40,6 @@ namespace SerialPortTerminal
 
         private void SetDateTimeForm_Load(object sender, EventArgs e)
         {
-
-
-
-
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

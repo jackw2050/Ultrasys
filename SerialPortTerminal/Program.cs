@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace SerialPortTerminal
+namespace UltraSys
 {
   static class Program
   {
@@ -13,7 +13,7 @@ namespace SerialPortTerminal
     static void Main()
     {
       Application.EnableVisualStyles();
-      Application.Run(new frmTerminal());
+      Application.Run(new UltraSysMainForm());
     }
   }
 }

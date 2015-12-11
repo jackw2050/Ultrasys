@@ -68,6 +68,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FileHelpers">
+      <HintPath>packages\FileHelpers.3.1.5\lib\net40\FileHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -87,18 +90,22 @@
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
     <Compile Include="CalculateMarineData.cs" />
+    <Compile Include="Charts.cs" />
+    <Compile Include="ConfigData.cs" />
+    <Compile Include="ConfigFile.cs" />
     <Compile Include="CrossCouplingDataForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CrossCouplingDataForm.Designer.cs">
       <DependentUpon>CrossCouplingDataForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrossCouplingForm.cs">
+    <Compile Include="CrossCouplingChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CrossCouplingForm.Designer.cs">
-      <DependentUpon>CrossCouplingForm.cs</DependentUpon>
+    <Compile Include="CrossCouplingChartForm.Designer.cs">
+      <DependentUpon>CrossCouplingChartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataGrids.cs" />
     <Compile Include="EngineerConfigurationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +130,7 @@
     <Compile Include="GravityDataForm.Designer.cs">
       <DependentUpon>GravityDataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="MeterData.cs" />
     <Compile Include="SerialForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,11 +155,17 @@
     <Compile Include="SwitchesForm.Designer.cs">
       <DependentUpon>SwitchesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Terminal.cs">
+    <Compile Include="SystemAuxForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Terminal.Designer.cs">
-      <DependentUpon>Terminal.cs</DependentUpon>
+    <Compile Include="SystemAuxForm.Designer.cs">
+      <DependentUpon>SystemAuxForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UltraSys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UltraSys.Designer.cs">
+      <DependentUpon>UltraSys.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -161,8 +175,8 @@
     <EmbeddedResource Include="CrossCouplingDataForm.resx">
       <DependentUpon>CrossCouplingDataForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrossCouplingForm.resx">
-      <DependentUpon>CrossCouplingForm.cs</DependentUpon>
+    <EmbeddedResource Include="CrossCouplingChartForm.resx">
+      <DependentUpon>CrossCouplingChartForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EngineerConfigurationForm.resx">
       <DependentUpon>EngineerConfigurationForm.cs</DependentUpon>
@@ -188,8 +202,11 @@
     <EmbeddedResource Include="SwitchesForm.resx">
       <DependentUpon>SwitchesForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Terminal.resx">
-      <DependentUpon>Terminal.cs</DependentUpon>
+    <EmbeddedResource Include="SystemAuxForm.resx">
+      <DependentUpon>SystemAuxForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UltraSys.resx">
+      <DependentUpon>UltraSys.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -202,6 +219,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Content Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\frmTerminal.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

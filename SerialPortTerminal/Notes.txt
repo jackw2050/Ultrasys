@@ -10,3 +10,20 @@ Passing parameters between forms and threads
 1. No Change
 
 
+Customer requests:
+
+1.	Indicator for recording status.
+	Add a text box indicating recording including the file name and time started.  Second text box withccurrent duration updated every min? hour?
+	Add selector for variable new file creation.  Day, hour etc.  Add text box to indicate time remaining before new file.  For manual indicate N/A
+
+2.	Update data at one second rate.
+	Record data at one second rate but have selector for variable rate to display.  Needed??
+
+3.	Data is displayed in mV but not mGal.
+	Add selector/ check box to choose.  What additional calulations are needed.  I think they are done already for the printer chart.
+
+4.	Include environmental parameters (vertical, horozontal acceleration, temperature, pressure)
+
+5.	Display gravity and relative gravity in chart.
+
+6.	Need GPS data displayed including GTM, course, speed and related data.

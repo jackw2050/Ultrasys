@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SerialPortTerminal.Properties {
+namespace UltraSys.Properties
+{
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -74,9 +75,9 @@ namespace SerialPortTerminal.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Text")]
-        public global::SerialPortTerminal.DataMode DataMode {
+        public global::UltraSys.DataMode DataMode {
             get {
-                return ((global::SerialPortTerminal.DataMode)(this["DataMode"]));
+                return ((global::UltraSys.DataMode)(this["DataMode"]));
             }
             set {
                 this["DataMode"] = value;

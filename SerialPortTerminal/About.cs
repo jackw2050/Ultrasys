@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Reflection;
 #endregion
 
-namespace SerialPortTerminal
+namespace UltraSys
 {
   public partial class frmAbout : Form
   {
@@ -22,7 +22,7 @@ namespace SerialPortTerminal
       InitializeComponent();
       
       // Read the about HTML from the assembly
-      string html = (new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("SerialPortTerminal.About.htm"))).ReadToEnd();
+      string html = (new StreamReader(Assembly.GetExecutingAssembly().GetManifestResourceStream("UltraSys.About.htm"))).ReadToEnd();
 
       // Replace sections with appropriate data
       html = html.Replace("{version}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
@@ -38,6 +38,11 @@ namespace SerialPortTerminal
     {
       // Since the navigation is complete, delete the temp file
       File.Delete(TempFile);
+    }
+
+    private void frmAbout_Load(object sender, EventArgs e)
+    {
+
     }
   }
 }

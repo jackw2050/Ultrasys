@@ -7,13 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace SerialPortTerminal
+namespace UltraSys
 {
     public partial class CrossCouplingChartForm : Form
     {
         public CrossCouplingChartForm()
         {
             InitializeComponent();
+        }
+
+        private void CrossCouplingChartForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

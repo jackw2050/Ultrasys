@@ -1,4 +1,4 @@
-﻿namespace SerialPortTerminal
+﻿namespace UltraSys
 {
     partial class SetDateTimeForm
     {
@@ -31,11 +31,12 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.setDateTimeButton = new System.Windows.Forms.Button();
             this.dayOfYearLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(12, 27);
+            this.dateTimePicker1.Location = new System.Drawing.Point(28, 51);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(292, 20);
             this.dateTimePicker1.TabIndex = 0;
@@ -44,7 +45,7 @@
             // setDateTimeButton
             // 
             this.setDateTimeButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.setDateTimeButton.Location = new System.Drawing.Point(88, 112);
+            this.setDateTimeButton.Location = new System.Drawing.Point(279, 145);
             this.setDateTimeButton.Name = "setDateTimeButton";
             this.setDateTimeButton.Size = new System.Drawing.Size(106, 23);
             this.setDateTimeButton.TabIndex = 2;
@@ -55,23 +56,37 @@
             // dayOfYearLabel
             // 
             this.dayOfYearLabel.AutoSize = true;
-            this.dayOfYearLabel.Location = new System.Drawing.Point(85, 74);
+            this.dayOfYearLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dayOfYearLabel.Location = new System.Drawing.Point(25, 99);
             this.dayOfYearLabel.Name = "dayOfYearLabel";
-            this.dayOfYearLabel.Size = new System.Drawing.Size(29, 13);
+            this.dayOfYearLabel.Size = new System.Drawing.Size(41, 20);
             this.dayOfYearLabel.TabIndex = 3;
             this.dayOfYearLabel.Text = "Day ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(24, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(361, 20);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Select new date and time for  embedded procesor";
             // 
             // SetDateTimeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(340, 180);
+            this.ClientSize = new System.Drawing.Size(414, 180);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.dayOfYearLabel);
             this.Controls.Add(this.setDateTimeButton);
             this.Controls.Add(this.dateTimePicker1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SetDateTimeForm";
-            this.Text = "Set Date and Time";
+            this.ShowIcon = false;
             this.Load += new System.EventHandler(this.SetDateTimeForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -83,5 +98,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button setDateTimeButton;
         private System.Windows.Forms.Label dayOfYearLabel;
+        private System.Windows.Forms.Label label1;
     }
 }

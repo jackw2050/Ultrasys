@@ -43,24 +43,36 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SerialPort Terminal.exe" size="648192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FileHelpers.dll" size="233472">
+      <assemblyIdentity name="FileHelpers" version="3.1.5.0" publicKeyToken="3E0C08D59CC3D657" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>bBLStBN+OLwwRjXqBWDMMamdb/c=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SerialPort Terminal.exe" size="1926144">
       <assemblyIdentity name="SerialPort Terminal" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>SllAWWHxjecbauU3uHFupiXTFgE=</dsig:DigestValue>
+        <dsig:DigestValue>XpPtlNvOFpZBo0GzHlAgeMCmmtw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="App.config" size="1744">
+  <file name="App.config" size="1714">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>G5RDPY3cafio3rXkN+7uKsIfA7M=</dsig:DigestValue>
+      <dsig:DigestValue>bgSqwQSKZfv+qcxnYKywjhYeGJY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="App.ico" size="270398">
@@ -72,31 +84,31 @@
       <dsig:DigestValue>PdqLOzZn4McCOeMSXzHdZAJL5h4=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Notes.txt" size="150">
+  <file name="Notes.txt" size="1029">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>oKQHMKbSZ/x/6NuGZq4ujuPqp6c=</dsig:DigestValue>
+      <dsig:DigestValue>yA2OrF2tL9IMeCr5ZCnvejdqRhw=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SerialPort Terminal.exe.config" size="1744">
+  <file name="SerialPort Terminal.exe.config" size="1714">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>G5RDPY3cafio3rXkN+7uKsIfA7M=</dsig:DigestValue>
+      <dsig:DigestValue>bgSqwQSKZfv+qcxnYKywjhYeGJY=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SerialPort Terminal.pdb" size="130560">
+  <file name="SerialPort Terminal.pdb" size="177664">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>ryMbCR9b98WnaWtx6tBRutZvmYI=</dsig:DigestValue>
+      <dsig:DigestValue>x8XYg6N+r91+ootjj4zxfgD2eMg=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

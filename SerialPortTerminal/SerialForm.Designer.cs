@@ -1,4 +1,4 @@
-﻿namespace SerialPortTerminal
+﻿namespace UltraSys
 {
     partial class SerialForm
     {

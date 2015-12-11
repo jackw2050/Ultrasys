@@ -1,4 +1,4 @@
-﻿namespace SerialPortTerminal
+﻿namespace UltraSys
 {
     partial class CrossCouplingDataForm
     {
@@ -28,17 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.crossCouplingDataGridView = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.hideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            ((System.ComponentModel.ISupportInitialize)(this.crossCouplingDataGridView)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // richTextBox1
+            // crossCouplingDataGridView
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.LightGray;
-            this.richTextBox1.Location = new System.Drawing.Point(12, 44);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(703, 205);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
+            this.crossCouplingDataGridView.AllowUserToOrderColumns = true;
+            this.crossCouplingDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.crossCouplingDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.crossCouplingDataGridView.Location = new System.Drawing.Point(0, 24);
+            this.crossCouplingDataGridView.Name = "crossCouplingDataGridView";
+            this.crossCouplingDataGridView.Size = new System.Drawing.Size(727, 237);
+            this.crossCouplingDataGridView.TabIndex = 20;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.hideToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(727, 24);
+            this.menuStrip1.TabIndex = 21;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // hideToolStripMenuItem
+            // 
+            this.hideToolStripMenuItem.Name = "hideToolStripMenuItem";
+            this.hideToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.hideToolStripMenuItem.Text = "Hide";
+            this.hideToolStripMenuItem.Click += new System.EventHandler(this.hideToolStripMenuItem_Click);
             // 
             // CrossCouplingDataForm
             // 
@@ -46,15 +68,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
             this.ClientSize = new System.Drawing.Size(727, 261);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.crossCouplingDataGridView);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "CrossCouplingDataForm";
             this.Text = "Cross Coupling Data";
+            this.Load += new System.EventHandler(this.CrossCouplingDataForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.crossCouplingDataGridView)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        public System.Windows.Forms.DataGridView crossCouplingDataGridView;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem hideToolStripMenuItem;
+
     }
 }
